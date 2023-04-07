@@ -1,0 +1,14 @@
+-
+  name: Play 1
+  hosts: localhost
+  tasks:
+    - name: Execute command date
+      command: date
+
+    - name: Display contents of file
+      command: cat /etc/resolv.conf
+
+    - name: Display contents of file
+      command: cat resolv.conf chdir=/etc
+
+

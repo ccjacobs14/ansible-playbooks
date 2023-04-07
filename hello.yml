@@ -1,0 +1,24 @@
+-
+  name: update resolve.conf
+  hosts: localhost
+  tasks:
+    - include_vars: vars.yml
+    - name: add line to resolv.conf
+      lineinfile:
+        path: /Users/varunmirchandani/IdeaProjects/ansible/script.sh
+        line: 'nameserver {{ ip_address }}'
+    - name: echo variable
+      command: echo {{ ip_address2 }}
+- name: update resolve.conf
+  hosts: localhost
+  tasks:
+    - include_vars: vars.yml
+    - name: add line to resolv.conf
+      lineinfile:
+        path: /Users/varunmirchandani/IdeaProjects/ansible/script.sh
+        line: 'nameserver {{ ip_address }}'
+    - name: echo variable
+      command: echo {{ ip_address2 }}
+
+
+
