@@ -1,0 +1,32 @@
+-
+  name: gather facts
+  hosts: localhost
+  tasks:
+    - name: gather facts
+      debug:
+        var: ansible_facts
+      tags:
+        - macos
+
+    - name: run command on basis of facts
+      command: echo "hi"
+      register: output
+      when: ansible_facts['os_family'] == 'Darwin'
+      ignore_errors: true
+
+    - name: run command on basis of output
+      command: echo "hello"
+      when: output.stdout.find('hi') != -1
+      ignore_errors: false
+
+    - name: run command on basis of output
+      command: echo "hello"
+      tags:
+        - macos
+        - configuration
+
+
+
+
+
+

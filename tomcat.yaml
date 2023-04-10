@@ -1,0 +1,50 @@
+-
+  name: install tomcat and configure server
+  hosts: localhost
+  remote_user: root
+  become: yes
+
+  vars:
+    path: /opt/tomcat
+
+  tasks:
+    - name: update package manager
+      apt:
+        upgrade: yes
+
+    - name: install java
+      apt:
+        name: openjdk-11-jdk
+        state: present
+
+    - name: Create tomcat user
+      user:
+        name: tomcat
+
+    - name: Create tomcat group
+      group:
+        name: tomcat
+
+    - name: Create tomcat directory
+      file:
+        path: {{ path }}
+        owner: tomcat
+        group: tomcat
+        mode: 755
+        state: directory
+
+    - name: download and unzip tomcat
+      unarchive:
+        src: https://downloads.apache.org/tomcat/tomcat-9/v9.0.72//bin/apache-tomcat-9.0.72.tar.gz
+        dest: {{ path }}
+        remote_src: yes
+        state: directory
+
+    - name: start tomcat server
+      command: sh '{{ path }}'/bin/startup.sh
+
+    - name: allow tcp connections
+      command: sudo ufw allow 8080/tcp
+
+
+

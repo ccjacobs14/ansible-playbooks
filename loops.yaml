@@ -1,0 +1,25 @@
+-
+  name: install packages
+  hosts: localhost
+  vars:
+    packages:
+      - name: python
+        required: true
+      - name: nginix
+        required: false
+      - name: apache
+        required: true
+  tasks:
+    - name: install '{{ item.name }}'
+      command: echo installing '{{ item.name }}'  '{{ item.required }}'
+      when: item.required==true
+      loop: "{{ packages }}"
+
+    - name: install '{{ item }}'
+      command: echo installing '{{ item }}'
+      with_items:
+        - gunjan
+        - koby
+        - hans
+        - patrick
+        - ibt
