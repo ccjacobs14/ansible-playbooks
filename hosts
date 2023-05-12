@@ -1,5 +1,4 @@
-# understanding adhoc command
-
-[ubuntu]
-192.168.1.118
-192.168.1.119
+# inventory file
+[nodes]
+159.203.58.170
+143.198.36.87
