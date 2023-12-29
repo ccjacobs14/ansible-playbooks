@@ -1,0 +1,20 @@
+---
+- name: hello world
+  hosts: localhost
+  tasks:
+    - name: display hello world
+      shell: echo "hello world"
+    - name: display hi
+      shell: echo "hi"
+    - name: run date
+      command: date
+    - name: list file contents
+      command: cat resolv.conf
+      args:
+        chdir: /etc
+    - name: add server to file
+      lineinfile:
+        path: test.txt
+        line: 'server 169.385.98.29'
+
+
