@@ -1,0 +1,9 @@
+ip_address : 127.463.213.21
+webservers : node2
+softwares:
+  - name: python
+    required: true
+  - name: java
+    required: true
+  - name: ruby
+    required: false
